@@ -11,7 +11,6 @@ const MovieList = (props) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  console.log(title)
   const addMovie =()=>{
     props.setMovies([...props.movies,
         {
@@ -25,11 +24,17 @@ const MovieList = (props) => {
     ])
     handleClose()
   }
+  const delMovie =(id)=>{
+    props.setMovies(props.movies.filter(movie => movie.id!=id))
+  }
   return (
     <div>
         <Button variant="primary" onClick={handleShow} style={{marginTop:"10px", marginLeft:"5px"}}>
         Add new Movie
       </Button>
+    <br />
+    <br />
+      
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -98,7 +103,7 @@ const MovieList = (props) => {
       </Modal>
     <div className="d-flex justify-content-around flex-wrap">
       {props.movies.map((movie,index)=>(
-        <MovieCard key={index} info={movie}/>
+        <MovieCard key={index} info={movie} delMovie={delMovie}/>
       ))}
     </div>
     </div>

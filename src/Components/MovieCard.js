@@ -21,6 +21,10 @@ function MovieCard(props) {
                 <Button variant="primary" onClick={() => window.open(props.info.trailer, '_blank')}>
                     See more...
                 </Button>
+                <br />
+                <Button variant="primary" onClick={()=>props.delMovie(props.info.id)}>
+                    delete
+                </Button>
             </Card.Body>
         </Card>
     );
