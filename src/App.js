@@ -7,19 +7,22 @@ import { useEffect, useState } from 'react';
 function App() {
   const [movies,setMovies]=useState(moviesData)
   const [search, setSearch]=useState("")
-  console.log(search)
+  const [rating, setRating] = useState(0);
   useEffect(()=>{
     if(search){
       setMovies(moviesData.filter(movie =>movie.title.toLowerCase().includes(search.toLowerCase().trim())))
-    }else{
+    }if (rating){
+      setMovies(moviesData.filter(movie =>movie.rate==rating))
+    }
+    else{
       setMovies(moviesData)
     }
-  },[search])
+  },[search,rating])
 
   return (
     <div>
       <div className="App">
-      <Navb setSearch={setSearch} />
+      <Navb setSearch={setSearch} setRating={setRating} rating={rating}/>
       <MovieList movies={movies} setMovies={setMovies}/>
     </div>
     </div>
